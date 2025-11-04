@@ -1,2 +1,0 @@
-# CzatoNotatnik
-czatonotatnik :sunglasses:
