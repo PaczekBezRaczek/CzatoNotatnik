@@ -1,0 +1,201 @@
+/* --- Ogólne --- */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f0f2f5;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* --- Układ główny --- */
+.main-layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 220px 1fr 350px;
+  grid-template-rows: 1fr;
+  height: 100%;
+  overflow: hidden;
+  gap: 10px;
+  padding: 10px;
+}
+
+/* --- Panel osób (lewa kolumna, pełna wysokość) --- */
+#usersPanel {
+  grid-column: 1;
+  grid-row: 1;
+  background: #ffffff;
+  border-right: 1px solid #ccc;
+  padding: 15px;
+  overflow-y: auto;
+  border-radius: 10px;
+}
+
+#usersPanel h3 {
+  margin-top: 0;
+  text-align: center;
+}
+
+#userList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#userList li {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+/* --- Środkowa kolumna (tablica + notatki) --- */
+.center-panel {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 10px;
+}
+
+
+/* --- Tablica nauczyciela --- */
+header {
+  background: #3b7bdb;
+  color: white;
+  padding: 15px 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  width: 100%;
+  margin: 0 0 10px 0;
+  text-align: center;
+  flex: 0.75; /* ← TABLICA = 75% WYSOKOŚCI ŚRODKA */
+  display: flex;
+  flex-direction: column;
+}
+
+
+header h2 {
+  margin: 0 0 8px 0;
+}
+
+#board {
+  flex: 1;
+  width: 100%;
+  resize: none;
+  font-size: 18px;
+}
+
+
+#saveBoardBtn {
+  margin-top: 6px;
+  padding: 8px 12px;
+  border: none;
+  background: #fff;
+  color: #3b7bdb;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+#saveBoardBtn:hover {
+  background: #d9e3ff;
+}
+
+/* --- Notatki (pod tablicą, mniejsze) --- */
+#notesSection {
+  background: #f9fafc;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 100%;
+  margin: 0 0 10px 0;
+  padding: 15px;
+  flex: 0.25; /* ← NOTATKI = 25% WYSOKOŚCI ŚRODKA */
+  display: flex;
+  flex-direction: column;
+}
+
+
+#notesSection h2 {
+  margin-top: 0;
+}
+
+#notes {
+  flex: 1;
+  resize: none;
+}
+
+
+#saveNotesBtn {
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #3b7bdb;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+#saveNotesBtn:hover {
+  background: #2e63b3;
+}
+
+/* --- Czat (prawa kolumna, pełna wysokość) --- */
+#chatSection {
+  grid-column: 3;
+  grid-row: 1;
+  background: #ffffff;
+  border-left: 1px solid #ccc;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+#chatSection h2 {
+  margin-top: 0;
+}
+
+#chatBox {
+  flex: 1;
+  background: #eef0f4;
+  border-radius: 8px;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-input {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+#chatInput {
+  flex: 1;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+#sendMsgBtn {
+  background: #3b7bdb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 18px;
+}
+#sendMsgBtn:hover {
+  background: #2f63b3;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
