@@ -9,12 +9,16 @@ body {
   overflow: hidden;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 /* --- Układ główny --- */
 .main-layout {
   flex: 1;
   display: grid;
-  grid-template-columns: 220px 1fr 350px;
-  grid-template-rows: 1fr;
+  grid-template-columns: .4fr 1.5fr .5fr;
+  grid-template-rows: 100%;
   height: 100%;
   overflow: hidden;
   gap: 10px;
@@ -51,8 +55,8 @@ body {
 .center-panel {
   grid-column: 2;
   grid-row: 1;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 3fr 1fr;
   height: 100%;
   gap: 10px;
 }
@@ -63,12 +67,11 @@ header {
   background: #3b7bdb;
   color: white;
   padding: 15px 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.8);
   border-radius: 10px;
   width: 100%;
   margin: 0 0 10px 0;
   text-align: center;
-  flex: 0.75; /* ← TABLICA = 75% WYSOKOŚCI ŚRODKA */
   display: flex;
   flex-direction: column;
 }
@@ -108,7 +111,6 @@ header h2 {
   width: 100%;
   margin: 0 0 10px 0;
   padding: 15px;
-  flex: 0.25; /* ← NOTATKI = 25% WYSOKOŚCI ŚRODKA */
   display: flex;
   flex-direction: column;
 }
@@ -149,6 +151,7 @@ header h2 {
   flex-direction: column;
   overflow: hidden;
   border-radius: 10px;
+  height: 100%;
 }
 
 #chatSection h2 {
