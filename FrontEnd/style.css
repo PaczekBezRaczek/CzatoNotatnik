@@ -241,3 +241,17 @@ header h2 {
 #loginPass {
   margin-bottom: 8px;
 }
+#notes {
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(#dce7ff 1px, transparent 1px),
+    linear-gradient(90deg, #dce7ff 1px, transparent 1px);
+    
+  background-size: 28px 28px; /* kratka dopasowana do tekstu */
+  background-position: center;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 28px; /* tekst siada dokładnie na linie */
+  padding: 10px;
+  border-radius: 6px;
+}
