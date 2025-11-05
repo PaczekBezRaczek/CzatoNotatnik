@@ -1,5 +1,5 @@
 <?php
-require_once "config.php";
+require_once "db.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     $stmt = $pdo->query("SELECT content, updated_at FROM board ORDER BY id DESC LIMIT 1");

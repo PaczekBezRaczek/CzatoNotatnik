@@ -1,5 +1,5 @@
 <?php
-require_once "config.php";
+require_once "db.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     if (!isset($_GET["user_id"])) {

@@ -1,5 +1,5 @@
 <?php
-require_once "config.php";
+require_once "db.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     $last_id = isset($_GET["last_id"]) ? intval($_GET["last_id"]) : 0;

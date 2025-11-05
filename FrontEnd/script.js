@@ -1,3 +1,6 @@
+// Połączenie z api
+const api = "http://10.103.8.113/api/api.php";
+
 document.getElementById("sendMsgBtn").onclick = () => {
   const box = document.getElementById("chatBox");
   const msg = document.getElementById("chatInput").value;
