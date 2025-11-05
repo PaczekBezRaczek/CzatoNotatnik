@@ -1,15 +1,20 @@
-<?php
-$dsn = 'mysql:host=localhost;dbname=klasa;charset=utf8mb4';
-$user = 'root';
-$pass = '';
 
-try {
-    $pdo = new PDO($dsn, $user, $pass, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-    ]);
-} catch (Exception $e) {
-    http_response_code(500);
-    echo json_encode(['error' => 'DB connection failed']);
-    exit;
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Połączenie z MySQL</title>
+</head>
+<body>
+<?php
+//logowanie to login: imie i haslo 1234
+$mysqli = new mysqli("10.103.8.113", "Dominika", "1234", "lesson_app");
+
+if ($mysqli->connect_errno) {
+    die("Błąd połączenia: " . $mysqli->connect_error);
+} else {
+    echo "Połączenie działa!";
 }
 ?>
+</body>
+</html>
