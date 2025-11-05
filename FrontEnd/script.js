@@ -3,13 +3,8 @@ document.getElementById("sendMsgBtn").onclick = () => {
   const msg = document.getElementById("chatInput").value;
   if (msg.trim() !== "") {
     const el = document.createElement("div");
-    el.style.alignSelf = "flex-end";
-    el.style.background = "#3b7bdb";
-    el.style.color = "white";
-    el.style.padding = "8px 12px";
-    el.style.borderRadius = "15px 15px 0 15px";
-    el.style.margin = "4px 0";
     el.textContent = msg;
+    el.classList.add('msg')
     box.appendChild(el);
     document.getElementById("chatInput").value = "";
     box.scrollTop = box.scrollHeight;
@@ -32,3 +27,15 @@ document.getElementById("loginBtn").onclick = () => {
   // Wyczyść pole i zamknij login
   document.getElementById("loginBox").style.display = "none";
 };
+
+function theme() {
+    const html = document.documentElement;
+    const btn = document.getElementById("themeToggle");
+    if (html.getAttribute('data-theme') === 'light') {
+        html.removeAttribute('data-theme');
+        btn.textContent = 'Motyw: Ciemny';
+    } else {
+        html.setAttribute('data-theme', 'light');
+        btn.textContent = 'Motyw: Jasny';
+    }
+}

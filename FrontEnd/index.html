@@ -11,23 +11,25 @@
 
   <div class="main-layout">
 
-    <aside id="usersPanel">
+    <aside id="usersPanel" class="block">
 
       <!-- PANEL LOGOWANIA -->
-      <div id="loginBox">
+      <div id="loginBox" class="panel">
         <h3>🔐 Logowanie</h3>
-        <input type="text" id="loginName" placeholder="Nazwa użytkownika">
-        <input type="password" id="loginPass" placeholder="Hasło">
-        <select id="loginRole">
+        <input type="text" id="loginName" placeholder="Nazwa użytkownika" class="inset">
+        <input type="password" id="loginPass" placeholder="Hasło" class="inset">
+        <select id="loginRole" class="inset">
           <option value="student">Uczeń</option>
           <option value="teacher">Nauczyciel</option>
         </select>
-        <button id="loginBtn">Zaloguj</button>
+        <button id="loginBtn" style="width: 70%;">Zaloguj</button>
       </div>
 
       <h3>👥 Osoby</h3>
       <ul id="userList">
       </ul>
+
+      <button class="theme-toggle" id="themeToggle" onclick="theme()">Motyw: Ciemny</button>
     </aside>
 
 
@@ -35,27 +37,27 @@
     <div class="center-panel">
 
       <!-- TABLICA NAUCZYCIELA -->
-      <header id="boardSection">
+      <header id="boardSection" class="panel">
         <h2>🧑‍🏫 Tablica nauczyciela</h2>
-        <textarea id="board" placeholder="Tylko nauczyciel może edytować..."></textarea>
-        <button id="saveBoardBtn">Zapisz tablicę</button>
+        <textarea id="board" placeholder="Tylko nauczyciel może edytować..." class="inset"></textarea>
+        <button id="saveBoardBtn" style="margin-top: 15px;">Zapisz tablicę</button>
       </header>
 
       <!-- NOTATKI -->
-      <section id="notesSection">
+      <section id="notesSection" class="block">
         <h2>🗒️ Moje notatki</h2>
-        <textarea id="notes" placeholder="Twoje prywatne notatki..."></textarea>
-        <button id="saveNotesBtn">Zapisz notatki</button>
+        <textarea id="notes" placeholder="Twoje prywatne notatki..." class="inset"></textarea>
+        <button id="saveNotesBtn" style="margin-top: 15px;">Zapisz notatki</button>
       </section>
 
     </div>
 
     <!-- PRAWA STRONA: CZAT -->
-    <aside id="chatSection">
+    <aside id="chatSection" class="panel">
       <h2>💬 Czat grupowy</h2>
-      <div id="chatBox"></div>
+      <div id="chatBox" class="inset"></div>
       <div class="chat-input">
-        <input type="text" id="chatInput" placeholder="Napisz wiadomość...">
+        <input type="text" id="chatInput" placeholder="Napisz wiadomość..." class="inset">
         <button id="sendMsgBtn">📩</button>
       </div>
     </aside>

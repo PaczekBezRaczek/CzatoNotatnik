@@ -1,12 +1,47 @@
 /* --- Ogólne --- */
+
+:root {
+  --bg-dark: #252525;
+  --bg-light: #f0f0f0;
+  --text-dark: #cfd8dc;
+  --text-light: #1f2937;
+  --glass-blur: 10px;
+  --shadow1-dark: #141414;
+  --shadow2-dark: #2a2a2a;
+  --shadow1-light: #bebebe;
+  --shadow2-light: #ffffff;
+  --panel: #101aa7;
+  --btn-dark: #193868;
+  --btn-light: #7bacf5;
+}
+
+html:not([data-theme="light"]) {
+  --bg: var(--bg-dark);
+  --text: var(--text-dark);
+  --shadow1: var(--shadow1-dark);
+  --shadow2: var(--shadow2-dark);
+  --btn: var(--btn-dark);
+  --btn-shadow: #1a0c4b;
+}
+
+html[data-theme="light"] {
+  --bg: var(--bg-light);
+  --text: var(--text-light);
+  --shadow1: var(--shadow1-light);
+  --shadow2: var(--shadow2-light);
+  --btn: var(--btn-light);
+  --btn-shadow: var(--btn-dark);
+}
+
 body {
   margin: 0;
   font-family: "Segoe UI", Arial, sans-serif;
-  background: #f0f2f5;
+  background: var(--bg);
   height: 100vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  color: var(--text);
 }
 
 * {
@@ -25,12 +60,32 @@ body {
   padding: 10px;
 }
 
+/* --- Klasy wyglądów --- */
+.panel {
+  box-shadow: 8px 8px 16px var(--shadow1),
+        -8px -8px 16px var(--shadow2);
+  background: var(--panel);
+  color: #ffffff;
+}
+
+.block {
+  box-shadow: 8px 8px 16px var(--shadow1),
+        -8px -8px 16px var(--shadow2);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.inset {
+  box-shadow: inset 8px 8px 16px var(--shadow1),
+        inset -8px -8px 16px var(--shadow2);
+  background: var(--bg);
+  color: var(--text);
+}
+
 /* --- Panel osób (lewa kolumna, pełna wysokość) --- */
 #usersPanel {
   grid-column: 1;
   grid-row: 1;
-  background: #ffffff;
-  border-right: 1px solid #ccc;
   padding: 15px;
   overflow-y: auto;
   border-radius: 10px;
@@ -64,10 +119,7 @@ body {
 
 /* --- Tablica nauczyciela --- */
 header {
-  background: #3b7bdb;
-  color: white;
   padding: 15px 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.8);
   border-radius: 10px;
   width: 100%;
   margin: 0 0 10px 0;
@@ -86,30 +138,16 @@ header h2 {
   width: 100%;
   resize: none;
   font-size: 18px;
-}
-
-
-#saveBoardBtn {
-  margin-top: 6px;
-  padding: 8px 12px;
-  border: none;
-  background: #fff;
-  color: #3b7bdb;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-#saveBoardBtn:hover {
-  background: #d9e3ff;
+  border: 0;
+  border-radius: 15px;
+  padding: 10px;
 }
 
 /* --- Notatki (pod tablicą, mniejsze) --- */
 #notesSection {
-  background: #f9fafc;
-  border: 1px solid #ccc;
   border-radius: 10px;
   width: 100%;
-  margin: 0 0 10px 0;
+  margin: 5px 0 10px 0;
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -123,29 +161,15 @@ header h2 {
 #notes {
   flex: 1;
   resize: none;
-}
-
-
-#saveNotesBtn {
-  margin-top: 10px;
+  border: 0;
+  border-radius: 15px;
   padding: 10px;
-  border: none;
-  border-radius: 8px;
-  background: #3b7bdb;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
-#saveNotesBtn:hover {
-  background: #2e63b3;
 }
 
 /* --- Czat (prawa kolumna, pełna wysokość) --- */
 #chatSection {
   grid-column: 3;
   grid-row: 1;
-  background: #ffffff;
-  border-left: 1px solid #ccc;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -160,7 +184,6 @@ header h2 {
 
 #chatBox {
   flex: 1;
-  background: #eef0f4;
   border-radius: 8px;
   padding: 10px;
   overflow-y: auto;
@@ -179,19 +202,17 @@ header h2 {
   border-radius: 8px;
   border: 1px solid #ccc;
   padding: 10px;
+  border: 0;
+  border-radius: 15px;
 }
 
-#sendMsgBtn {
+.msg {
   background: #3b7bdb;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 14px;
-  cursor: pointer;
-  font-size: 18px;
-}
-#sendMsgBtn:hover {
-  background: #2f63b3;
+  padding: 8px 12px;
+  align-self: flex-end;
+  border-radius: 15px 15px 0 15px;
+  margin: 4px 0;
+  box-shadow: 8px 8px 16px var(--shadow1);
 }
 
 /* Scrollbars */
@@ -203,8 +224,6 @@ header h2 {
   border-radius: 4px;
 }
 #loginBox {
-  background: #ffffff;
-  border: 1px solid #ccc;
   border-radius: 10px;
   padding: 12px;
   margin-bottom: 15px;
@@ -221,23 +240,26 @@ header h2 {
   width: 100%;
   padding: 8px;
   border-radius: 6px;
-  border: 1px solid #bbb;
+  border: 0;
   margin-bottom: 8px;
 }
 
-#loginBox button {
-  width: 100%;
-  padding: 8px;
-  border: none;
-  border-radius: 6px;
-  background: #3b7bdb;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-}
-#loginBox button:hover {
-  background: #2e63b3;
-}
 #loginPass {
   margin-bottom: 8px;
+}
+
+button {
+    background: var(--btn);
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+    cursor: pointer;
+    margin: 5px;
+    transition: transform .2s ease;
+}
+
+button:hover {
+    box-shadow: inset 8px 8px 16px var(--btn-shadow);
+    transform: translateY(2px) translateX(2px);
 }
