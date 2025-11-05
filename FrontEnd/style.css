@@ -263,3 +263,18 @@ button:hover {
     box-shadow: inset 8px 8px 16px var(--btn-shadow);
     transform: translateY(2px) translateX(2px);
 }
+
+#notes {
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(#dce7ff 1px, transparent 1px),
+    linear-gradient(90deg, #dce7ff 1px, transparent 1px);
+    
+  background-size: 28px 28px; /* kratka dopasowana do tekstu */
+  background-position: center;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 28px; /* tekst siada dokładnie na linie */
+  padding: 10px;
+  border-radius: 6px;
+}
