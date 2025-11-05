@@ -202,3 +202,42 @@ header h2 {
   background: #ccc;
   border-radius: 4px;
 }
+#loginBox {
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+#loginBox h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+
+#loginBox input,
+#loginBox select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  margin-bottom: 8px;
+}
+
+#loginBox button {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  background: #3b7bdb;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+#loginBox button:hover {
+  background: #2e63b3;
+}
+#loginPass {
+  margin-bottom: 8px;
+}

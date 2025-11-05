@@ -11,15 +11,25 @@
 
   <div class="main-layout">
 
-    <!-- LEWA STRONA: UŻYTKOWNICY -->
     <aside id="usersPanel">
+
+      <!-- PANEL LOGOWANIA -->
+      <div id="loginBox">
+        <h3>🔐 Logowanie</h3>
+        <input type="text" id="loginName" placeholder="Nazwa użytkownika">
+        <input type="password" id="loginPass" placeholder="Hasło">
+        <select id="loginRole">
+          <option value="student">Uczeń</option>
+          <option value="teacher">Nauczyciel</option>
+        </select>
+        <button id="loginBtn">Zaloguj</button>
+      </div>
+
       <h3>👥 Osoby</h3>
       <ul id="userList">
-        <li>Belfer</li>
-        <li>skibidi</li>
-        <li>L</li>
       </ul>
     </aside>
+
 
     <!-- ŚRODEK: TABLICA + NOTATKI -->
     <div class="center-panel">

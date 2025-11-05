@@ -15,3 +15,20 @@ document.getElementById("sendMsgBtn").onclick = () => {
     box.scrollTop = box.scrollHeight;
   }
 };
+document.getElementById("loginBtn").onclick = () => {
+  const name = document.getElementById("loginName").value.trim();
+  const role = document.getElementById("loginRole").value;
+  const pass = document.getElementById("loginPass").value.trim();
+
+
+  if (name === "") return alert("Wpisz nazwę użytkownika!");
+
+  // Dodanie do listy osób
+  const userList = document.getElementById("userList");
+  const li = document.createElement("li");
+  li.textContent = name + (role === "teacher" ? " (Nauczyciel)" : "");
+  userList.appendChild(li);
+
+  // Wyczyść pole i zamknij login
+  document.getElementById("loginBox").style.display = "none";
+};
