@@ -6,11 +6,11 @@
 
 ### Co się dzieje w aplikacji?
 
-~ tablica do której ma dostęp **tylko** nauczyciel oraz którą uczeń może zapisać w formacie pdf,
-~ notatkę ucznia można zapisać oraz pobrać w formacie .txt,
-~ wiadomości na czacie grupowym może pisać **każdy**, znikają one jednak po 24h;
-~ po zalogowaniu masz możliwość zobaczenia jakie osoby są obenie zalogowane w klasie oraz jaką mają rolę (czy są nauczycielem czy uczniem),
-~
+- tablica do której ma dostęp **tylko** nauczyciel oraz którą uczeń może zapisać w formacie pdf,
+- notatkę ucznia można zapisać oraz pobrać w formacie .txt,
+- wiadomości na czacie grupowym może pisać **każdy**, znikają one jednak po 24h;
+- po zalogowaniu masz możliwość zobaczenia jakie osoby są obenie zalogowane w klasie oraz jaką mają rolę (czy są nauczycielem czy uczniem),
+
 ---
 
 ## ⚙️ Technologie
