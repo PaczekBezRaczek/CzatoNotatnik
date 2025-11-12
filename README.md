@@ -80,7 +80,7 @@
 
 ## 👥 Autorzy
 
-- **Programista Frontend:** [Olivier]  
-- **UX/UI Desinger:** [Jakub]  
-- **Programista Backend:** [Mikołaj]  
-- **Tester / Dokumentalista:** [Dominika]
+- **Programista Frontend:** Olivier 
+- **UX/UI Desinger:** Jakub  
+- **Programista Backend:** Mikołaj 
+- **Tester / Dokumentalista:** Dominika
