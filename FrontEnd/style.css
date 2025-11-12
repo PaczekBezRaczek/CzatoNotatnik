@@ -1,47 +1,12 @@
 /* --- Ogólne --- */
-
-:root {
-  --bg-dark: #252525;
-  --bg-light: #f0f0f0;
-  --text-dark: #cfd8dc;
-  --text-light: #1f2937;
-  --glass-blur: 10px;
-  --shadow1-dark: #141414;
-  --shadow2-dark: #2a2a2a;
-  --shadow1-light: #bebebe;
-  --shadow2-light: #ffffff;
-  --panel: #101aa7;
-  --btn-dark: #193868;
-  --btn-light: #7bacf5;
-}
-
-html:not([data-theme="light"]) {
-  --bg: var(--bg-dark);
-  --text: var(--text-dark);
-  --shadow1: var(--shadow1-dark);
-  --shadow2: var(--shadow2-dark);
-  --btn: var(--btn-dark);
-  --btn-shadow: #1a0c4b;
-}
-
-html[data-theme="light"] {
-  --bg: var(--bg-light);
-  --text: var(--text-light);
-  --shadow1: var(--shadow1-light);
-  --shadow2: var(--shadow2-light);
-  --btn: var(--btn-light);
-  --btn-shadow: var(--btn-dark);
-}
-
 body {
   margin: 0;
   font-family: "Segoe UI", Arial, sans-serif;
-  background: var(--bg);
+  background: #f0f2f5;
   height: 100vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  color: var(--text);
 }
 
 * {
@@ -60,32 +25,12 @@ body {
   padding: 10px;
 }
 
-/* --- Klasy wyglądów --- */
-.panel {
-  box-shadow: 8px 8px 16px var(--shadow1),
-        -8px -8px 16px var(--shadow2);
-  background: var(--panel);
-  color: #ffffff;
-}
-
-.block {
-  box-shadow: 8px 8px 16px var(--shadow1),
-        -8px -8px 16px var(--shadow2);
-  background: var(--bg);
-  color: var(--text);
-}
-
-.inset {
-  box-shadow: inset 8px 8px 16px var(--shadow1),
-        inset -8px -8px 16px var(--shadow2);
-  background: var(--bg);
-  color: var(--text);
-}
-
 /* --- Panel osób (lewa kolumna, pełna wysokość) --- */
 #usersPanel {
   grid-column: 1;
   grid-row: 1;
+  background: #ffffff;
+  border-right: 1px solid #ccc;
   padding: 15px;
   overflow-y: auto;
   border-radius: 10px;
@@ -119,7 +64,10 @@ body {
 
 /* --- Tablica nauczyciela --- */
 header {
+  background: #3b7bdb;
+  color: white;
   padding: 15px 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.8);
   border-radius: 10px;
   width: 100%;
   margin: 0 0 10px 0;
@@ -138,16 +86,30 @@ header h2 {
   width: 100%;
   resize: none;
   font-size: 18px;
-  border: 0;
-  border-radius: 15px;
-  padding: 10px;
+}
+
+
+#saveBoardBtn {
+  margin-top: 6px;
+  padding: 8px 12px;
+  border: none;
+  background: #fff;
+  color: #3b7bdb;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+#saveBoardBtn:hover {
+  background: #d9e3ff;
 }
 
 /* --- Notatki (pod tablicą, mniejsze) --- */
 #notesSection {
+  background: #f9fafc;
+  border: 1px solid #ccc;
   border-radius: 10px;
   width: 100%;
-  margin: 5px 0 10px 0;
+  margin: 0 0 10px 0;
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -161,15 +123,29 @@ header h2 {
 #notes {
   flex: 1;
   resize: none;
-  border: 0;
-  border-radius: 15px;
+}
+
+
+#saveNotesBtn {
+  margin-top: 10px;
   padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #3b7bdb;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+#saveNotesBtn:hover {
+  background: #2e63b3;
 }
 
 /* --- Czat (prawa kolumna, pełna wysokość) --- */
 #chatSection {
   grid-column: 3;
   grid-row: 1;
+  background: #ffffff;
+  border-left: 1px solid #ccc;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -184,6 +160,7 @@ header h2 {
 
 #chatBox {
   flex: 1;
+  background: #eef0f4;
   border-radius: 8px;
   padding: 10px;
   overflow-y: auto;
@@ -202,17 +179,19 @@ header h2 {
   border-radius: 8px;
   border: 1px solid #ccc;
   padding: 10px;
-  border: 0;
-  border-radius: 15px;
 }
 
-.msg {
+#sendMsgBtn {
   background: #3b7bdb;
-  padding: 8px 12px;
-  align-self: flex-end;
-  border-radius: 15px 15px 0 15px;
-  margin: 4px 0;
-  box-shadow: 8px 8px 16px var(--shadow1);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 18px;
+}
+#sendMsgBtn:hover {
+  background: #2f63b3;
 }
 
 /* Scrollbars */
@@ -224,6 +203,8 @@ header h2 {
   border-radius: 4px;
 }
 #loginBox {
+  background: #ffffff;
+  border: 1px solid #ccc;
   border-radius: 10px;
   padding: 12px;
   margin-bottom: 15px;
@@ -240,30 +221,26 @@ header h2 {
   width: 100%;
   padding: 8px;
   border-radius: 6px;
-  border: 0;
+  border: 1px solid #bbb;
   margin-bottom: 8px;
 }
 
+#loginBox button {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  background: #3b7bdb;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+#loginBox button:hover {
+  background: #2e63b3;
+}
 #loginPass {
   margin-bottom: 8px;
 }
-
-button {
-    background: var(--btn);
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    color: #ffffff;
-    cursor: pointer;
-    margin: 5px;
-    transition: transform .2s ease;
-}
-
-button:hover {
-    box-shadow: inset 8px 8px 16px var(--btn-shadow);
-    transform: translateY(2px) translateX(2px);
-}
-
 #notes {
   background-color: #ffffff;
   background-image:
@@ -277,4 +254,93 @@ button:hover {
   line-height: 28px; /* tekst siada dokładnie na linie */
   padding: 10px;
   border-radius: 6px;
+}
+/* --- Overlay blokujący stronę dopóki nie ma zalogowanego użytkownika --- */
+.auth-overlay {
+  position: fixed;
+  inset: 0; /* top:0; right:0; bottom:0; left:0; */
+  background: rgba(18, 24, 40, 0.55);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal logowania w overlayu */
+.auth-modal {
+  width: 320px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  text-align: center;
+}
+
+.auth-modal h2 {
+  margin: 0 0 12px 0;
+  font-size: 20px;
+}
+
+.auth-modal input,
+.auth-modal select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #d0d4dc;
+  background: #fafbff;
+}
+
+.auth-modal button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  background: #3b7bdb;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-modal button:hover {
+  background: #2f63b3;
+}
+
+.auth-modal .small {
+  margin-top: 10px;
+  color: #666;
+  font-size: 13px;
+}
+#userPanelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+#userPanelHeader button {
+  background: #3b7bdb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+#userPanelHeader button:hover {
+  background: #2f63b3;
+}
+textarea:disabled,
+input:disabled,
+button:disabled {
+  background-color: #f0f0f0 !important;
+  color: #999 !important;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+button:disabled:hover {
+  background-color: #f0f0f0 !important;
 }
