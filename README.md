@@ -2,11 +2,15 @@
     CzatoNotatnik :sunglasses:
     # 🧑‍🏫 Klasa online
 
-Prosta aplikacja webowa do nauki zdalnej – umożliwia:
-- wspólny czat dla wszystkich uczestników lekcji,
-- prywatne notatki dla każdego ucznia,
-- tablicę tekstową edytowaną tylko przez nauczyciela.
+---
 
+### Co się dzieje w aplikacji?
+
+~ tablica do której ma dostęp **tylko** nauczyciel oraz którą uczeń może zapisać w formacie pdf,
+~ notatkę ucznia można zapisać oraz pobrać w formacie .txt,
+~ wiadomości na czacie grupowym może pisać **każdy**, znikają one jednak po 24h;
+~ po zalogowaniu masz możliwość zobaczenia jakie osoby są obenie zalogowane w klasie oraz jaką mają rolę (czy są nauczycielem czy uczniem),
+~
 ---
 
 ## ⚙️ Technologie
@@ -14,7 +18,9 @@ Prosta aplikacja webowa do nauki zdalnej – umożliwia:
 - PHP 8 (REST API)
 - MySQL 5.7
 - Bootstrap 5
-- JavaScript (fetch, polling)
+- JavaScript
+- HTML
+- CSS
 
 ---
 
@@ -26,6 +32,14 @@ Prosta aplikacja webowa do nauki zdalnej – umożliwia:
 4. Uruchom serwer (np. XAMPP) i otwórz `http://localhost/klasa`.
 
 ---
+## Bezpieczeństwo aplikacji
+
+~ wiadomości na czacie są przechowywane prze 24h,
+~ hasło użytkownika jest szyfrowane,
+~ nauczyciel i uczeń mają inne udogodnienia.
+
+
+---
 
 ## 📡 Endpointy API
 
@@ -34,7 +48,7 @@ Prosta aplikacja webowa do nauki zdalnej – umożliwia:
 | `/messages?last_id=X` | GET | Pobiera nowe wiadomości | `last_id` | `[ {id, name, text, created_at} ]` |
 | `/messages` | POST | Dodaje nową wiadomość | `{text}` | `{success: true}` |
 | `/board` | GET | Odczyt tablicy nauczyciela | – | `{content}` |
-| `/board` | POST | Zapis tablicy (tylko teacher) | `{content}` | `{success: true}` |
+| `/board` | POST | Zapis tablicy  | `{content}` | `{success: true}` |
 | `/notes` | GET | Odczyt prywatnych notatek | – | `{content}` |
 | `/notes` | POST | Zapis notatek | `{content}` | `{success: true}` |
 
@@ -44,8 +58,8 @@ Prosta aplikacja webowa do nauki zdalnej – umożliwia:
 
 | Test | Co sprawdzić | Oczekiwany wynik |
 |------|---------------|------------------|
-| Logowanie | Jan / 1234 | Zalogowanie jako nauczyciel |
-| Wysyłanie wiadomości | Napisz tekst i Enter | Wiadomość pojawia się w czacie |
+| Logowanie | Jan / 1234 | Zalogowanie jako nauczyciel/uczeń |
+| Wysyłanie wiadomości | Napisz tekst i Enter | Wiadomość pojawia się w czacie i znika po 24h |
 | Edycja tablicy | Belfer zapisuje tablicę | Widoczna dla uczniów |
 | Notatki | Uczeń zapisuje treść | Zachowuje się po odświeżeniu |
 
@@ -53,7 +67,7 @@ Prosta aplikacja webowa do nauki zdalnej – umożliwia:
 
 ## 👥 Autorzy
 
-- **Programista Frontend:** [Oliwier]  
+- **Programista Frontend:** [Olivier]  
 - **UX/UI Desinger:** [Jakub]  
 - **Programista Backend:** [Mikołaj]  
 - **Tester / Dokumentalista:** [Dominika]

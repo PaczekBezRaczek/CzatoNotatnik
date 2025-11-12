@@ -1,6 +1,7 @@
 // Połączenie z api
 const api = "http://10.103.8.113/api/api.php";
 
+<<<<<<< HEAD
 // ----- Stan zalogowania -----
 let currentUser = null;
 
@@ -10,6 +11,18 @@ function doLogin(name, pass, role) {
   if (name === "") {
     alert("Wpisz nazwę użytkownika!");
     return false;
+=======
+document.getElementById("sendMsgBtn").onclick = () => {
+  const box = document.getElementById("chatBox");
+  const msg = document.getElementById("chatInput").value;
+  if (msg.trim() !== "") {
+    const el = document.createElement("div");
+    el.textContent = msg;
+    el.classList.add('msg')
+    box.appendChild(el);
+    document.getElementById("chatInput").value = "";
+    box.scrollTop = box.scrollHeight;
+>>>>>>> 806e5465bcd7f8437e36fa6e251ab7f18d780ad4
   }
 
   // Zapisz aktualnego użytkownika
@@ -138,4 +151,14 @@ function updateUIForLoginState() {
   notesTextarea.style.opacity = isLoggedIn ? "1" : "0.5";
   boardTextarea.style.opacity = (isLoggedIn && isTeacher) ? "1" : "0.5";
   chatInput.style.opacity = isLoggedIn ? "1" : "0.5";
+function theme() {
+    const html = document.documentElement;
+    const btn = document.getElementById("themeToggle");
+    if (html.getAttribute('data-theme') === 'light') {
+        html.removeAttribute('data-theme');
+        btn.textContent = 'Motyw: Ciemny';
+    } else {
+        html.setAttribute('data-theme', 'light');
+        btn.textContent = 'Motyw: Jasny';
+    }
 }
