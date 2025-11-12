@@ -8,27 +8,33 @@
   <script src="script.js" defer></script>
 </head>
 <body>
+<!-- OVERLAY BLOKUJĄCY DOSTĘP DO STRONY DO CZASU ZALOGOWANIA -->
+  <div id="authOverlay" class="auth-overlay">
+    <div class="auth-modal">
+      <h2>Zaloguj się</h2>
+      <input type="text" id="overlayLoginName" placeholder="Nazwa użytkownika">
+      <input type="password" id="overlayLoginPass" placeholder="Hasło">
+      <select id="overlayLoginRole">
+        <option value="student">Uczeń</option>
+        <option value="teacher">Nauczyciel</option>
+      </select>
+      <button id="overlayLoginBtn">Zaloguj</button>
+    </div>
+  </div>
 
   <div class="main-layout">
 
-    <aside id="usersPanel">
+<aside id="usersPanel">
+  <div id="userPanelHeader">
+    <h3>Osoby</h3>
+    <button id="loginToggleBtn">Zaloguj</button>
+    <button id="logoutBtn" style="display: none;">Wyloguj</button>
+  </div>
 
-      <!-- PANEL LOGOWANIA -->
-      <div id="loginBox">
-        <h3>🔐 Logowanie</h3>
-        <input type="text" id="loginName" placeholder="Nazwa użytkownika">
-        <input type="password" id="loginPass" placeholder="Hasło">
-        <select id="loginRole">
-          <option value="student">Uczeń</option>
-          <option value="teacher">Nauczyciel</option>
-        </select>
-        <button id="loginBtn">Zaloguj</button>
-      </div>
+  <ul id="userList">
+  </ul>
+</aside>
 
-      <h3>👥 Osoby</h3>
-      <ul id="userList">
-      </ul>
-    </aside>
 
 
     <!-- ŚRODEK: TABLICA + NOTATKI -->
@@ -36,14 +42,14 @@
 
       <!-- TABLICA NAUCZYCIELA -->
       <header id="boardSection">
-        <h2>🧑‍🏫 Tablica nauczyciela</h2>
+        <h2>Tablica nauczyciela</h2>
         <textarea id="board" placeholder="Tylko nauczyciel może edytować..."></textarea>
         <button id="saveBoardBtn">Zapisz tablicę</button>
       </header>
 
       <!-- NOTATKI -->
       <section id="notesSection">
-        <h2>🗒️ Moje notatki</h2>
+        <h2>Moje notatki</h2>
         <textarea id="notes" placeholder="Twoje prywatne notatki..."></textarea>
         <button id="saveNotesBtn">Zapisz notatki</button>
       </section>
@@ -52,11 +58,11 @@
 
     <!-- PRAWA STRONA: CZAT -->
     <aside id="chatSection">
-      <h2>💬 Czat grupowy</h2>
+      <h2>Czat grupowy</h2>
       <div id="chatBox"></div>
       <div class="chat-input">
         <input type="text" id="chatInput" placeholder="Napisz wiadomość...">
-        <button id="sendMsgBtn">📩</button>
+        <button id="sendMsgBtn">Wyślij</button>
       </div>
     </aside>
 
