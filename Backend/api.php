@@ -1,35 +1,23 @@
 <?php
-header('Content-Type: application/json');
+// api.php - prosty router (opcjonalny)
+header('Content-Type: application/json; charset=utf-8');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(204); exit; }
 
 $action = $_GET['action'] ?? '';
 
-$host = '10.103.8.113';
-$dbname = 'lesson_app';
-$user = 'Dominka';
-$pass = '1234';
-
-$pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass, [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-]);
-
-$data = json_decode(file_get_contents('php://input'), true);
-
-if ($action === 'login') {
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE login=? AND password=?");
-    $stmt->execute([$data['name'], $data['pass']]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($user) echo json_encode(['success' => true]);
-    else echo json_encode(['success' => false, 'message' => 'Nieprawidłowy login']);
-}
-
-if ($action === 'sendMessage') {
-    $msg = $data['message'] ?? '';
-    if ($msg) {
-        $stmt = $pdo->prepare("INSERT INTO chat (message, created_at) VALUES (?, NOW())");
-        $stmt->execute([$msg]);
-        echo json_encode(['success' => true]);
-    } else {
-        echo json_encode(['success' => false]);
-    }
+switch ($action) {
+    case 'login': require __DIR__ . '/auth.php'; break;
+    case 'getMessages':
+    case 'sendMessage': require __DIR__ . '/message.php'; break;
+    case 'getBoard':
+    case 'saveBoard': require __DIR__ . '/board.php'; break;
+    case 'getNotes':
+    case 'saveNotes': require __DIR__ . '/notes.php'; break;
+    default:
+        http_response_code(404);
+        echo json_encode(['error' => 'Invalid action']);
+        break;
 }

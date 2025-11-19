@@ -1,25 +1,56 @@
 <?php
 require_once "db.php";
 
+header('Content-Type: application/json; charset=utf-8');
+
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
-    $last_id = isset($_GET["last_id"]) ? intval($_GET["last_id"]) : 0;
-    $stmt = $pdo->prepare("SELECT m.id, m.text, u.name, m.created_at 
-                           FROM messages m 
-                           JOIN users u ON m.user_id = u.id 
-                           WHERE m.id > ? ORDER BY m.id ASC");
+    $last_id = intval($_GET["last_id"] ?? 0);
+
+    // Pobieramy tylko wiadomości nowsze niż last_id (polling)
+    $stmt = $pdo->prepare("
+        SELECT m.id, m.text, u.name
+        FROM messages m
+        JOIN users u ON m.user_id = u.id
+        WHERE m.id > ?
+        ORDER BY m.id ASC
+    ");
     $stmt->execute([$last_id]);
-    echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+    $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    echo json_encode($messages);
+    exit;
 }
 
-elseif ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $data = json_decode(file_get_contents("php://input"), true);
-    if (!isset($data["user_id"], $data["text"])) {
+    $user_id = intval($data["user_id"] ?? 0);
+    $text = trim($data["text"] ?? "");
+
+    if ($user_id === 0 || $text === "") {
         http_response_code(400);
-        echo json_encode(["error" => "Missing fields"]);
+        echo json_encode(["error" => "Brak danych"]);
         exit;
     }
-    $stmt = $pdo->prepare("INSERT INTO messages (user_id, text, created_at) VALUES (?, ?, NOW())");
-    $stmt->execute([$data["user_id"], $data["text"]]);
-    echo json_encode(["success" => true, "id" => $pdo->lastInsertId()]);
+
+    // 1. Dodajemy nową wiadomość
+    $stmt = $pdo->prepare("INSERT INTO messages (user_id, text) VALUES (?, ?)");
+    $stmt->execute([$user_id, $text]);
+    $new_id = $pdo->lastInsertId();
+
+    // 2. Zostawiamy TYLKO ostatnie 20 wiadomości (najstarsze znikają)
+    $pdo->query("
+        DELETE FROM messages 
+        WHERE id NOT IN (
+            SELECT id FROM (
+                SELECT id 
+                FROM messages 
+                ORDER BY id DESC 
+                LIMIT 20
+            ) AS keep_these
+        )
+    ");
+
+    echo json_encode(["success" => true, "id" => $new_id]);
+    exit;
 }
 ?>

@@ -1,56 +1,62 @@
 <?php
-require_once "db.php"; // $pdo
+// Backend/auth.php – wersja, która działa i z starymi hasłami (czystym tekstem) i nowymi
+require_once "db.php";
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $data = json_decode(file_get_contents("php://input"), true);
+header('Content-Type: application/json; charset=utf-8');
 
-    if (!isset($data['name']) || !isset($data['token'])) {
-        echo json_encode(["error" => "Nie podano nazwy użytkownika lub tokenu"]);
-        exit;
-    }
+if ($_SERVER["REQUEST_METHOD"] !== "POST") exit;
 
-    $name = trim($data['name']);
-    $token = $data['token'];
+$data = json_decode(file_get_contents("php://input"), true);
+$name = trim($data["name"] ?? "");
+$password = $data["password"] ?? "";
 
-    // Sprawdzenie, czy użytkownik istnieje
-    $stmt = $pdo->prepare("SELECT id, name, role, token FROM users WHERE name = ? LIMIT 1");
-    $stmt->execute([$name]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+if ($name === "" || $password === "") {
+    echo json_encode(["error" => "Podaj nazwę i hasło"]);
+    exit;
+}
 
-    if ($user) {
-        // Weryfikacja tokenu
-        if (password_verify($token, $user['token'])) {
-            // Zapis logowania
-            $ip = $_SERVER['REMOTE_ADDR'];
-            $logStmt = $pdo->prepare("INSERT INTO logins (user_id, ip_address) VALUES (?, ?)");
-            $logStmt->execute([$user['id'], $ip]);
+$stmt = $pdo->prepare("SELECT id, name, role, password FROM users WHERE name = ? LIMIT 1");
+$stmt->execute([$name]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            echo json_encode(["success" => true, "user" => $user]);
-        } else {
-            echo json_encode(["error" => "Nieprawidłowy token"]);
-        }
-    } else {
-        // Konto nie istnieje → tworzymy nowy user
-        $hashedToken = password_hash($token, PASSWORD_DEFAULT);
-        $insert = $pdo->prepare("INSERT INTO users (name, role, token) VALUES (?, 'student', ?)");
-        $insert->execute([$name, $hashedToken]);
-        $user_id = $pdo->lastInsertId();
+if ($user) {
+    $hashedInDb = $user["password"];
 
-        // Zapis logowania
-        $ip = $_SERVER['REMOTE_ADDR'];
-        $logStmt = $pdo->prepare("INSERT INTO logins (user_id, ip_address) VALUES (?, ?)");
-        $logStmt->execute([$user_id, $ip]);
+    // Jeśli hasło w bazie jest jeszcze czystym tekstem (stare dane)
+    if ($hashedInDb && $hashedInDb === $password) {
+        // Poprawne hasło w starym formacie → logujemy i aktualizujemy na hash
+        $newHash = password_hash($password, PASSWORD_DEFAULT);
+        $pdo->prepare("UPDATE users SET password = ? WHERE id = ?")->execute([$newHash, $user["id"]]);
 
         echo json_encode([
             "success" => true,
-            "user" => [
-                "id" => $user_id,
-                "name" => $name,
-                "role" => "student",
-                "token" => $token
-            ]
+            "user" => ["id" => $user["id"], "name" => $user["name"], "role" => $user["role"]]
         ]);
+        exit;
     }
+
+    // Normalne sprawdzanie zahashowanego hasła
+    if ($hashedInDb && password_verify($password, $hashedInDb)) {
+        echo json_encode([
+            "success" => true,
+            "user" => ["id" => $user["id"], "name" => $user["name"], "role" => $user["role"]]
+        ]);
+        exit;
+    }
+
+    // Złe hasło
+    echo json_encode(["error" => "Złe hasło"]);
+} else {
+    // Nowy użytkownik – zawsze uczeń (oprócz Jana)
+    $role = (strtolower($name) === "jan") ? "teacher" : "student";
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+    $stmt = $pdo->prepare("INSERT INTO users (name, role, password) VALUES (?, ?, ?)");
+    $stmt->execute([$name, $role, $hash]);
+    $id = $pdo->lastInsertId();
+
+    echo json_encode([
+        "success" => true,
+        "user" => ["id" => $id, "name" => $name, "role" => $role]
+    ]);
 }
 ?>
-

@@ -2,19 +2,22 @@
 require_once "db.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
-    $stmt = $pdo->query("SELECT content, updated_at FROM board ORDER BY id DESC LIMIT 1");
-    echo json_encode($stmt->fetch(PDO::FETCH_ASSOC));
+    $stmt = $pdo->query("SELECT content FROM board WHERE id = 1");
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    echo json_encode(["content" => $row["content"] ?? ""]);
+    exit;
 }
 
-elseif ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $data = json_decode(file_get_contents("php://input"), true);
-    if (!isset($data["content"])) {
-        http_response_code(400);
-        echo json_encode(["error" => "Missing content"]);
-        exit;
-    }
-    $stmt = $pdo->prepare("INSERT INTO board (content, updated_at) VALUES (?, NOW())");
-    $stmt->execute([$data["content"]]);
+    $content = $data["content"] ?? "";
+
+    // Zawsze edytujemy wiersz o id=1
+    $stmt = $pdo->prepare("INSERT INTO board (id, content) VALUES (1, ?) 
+                           ON DUPLICATE KEY UPDATE content = ?");
+    $stmt->execute([$content, $content]);
+
     echo json_encode(["success" => true]);
+    exit;
 }
 ?>
