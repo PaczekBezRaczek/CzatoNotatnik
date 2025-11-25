@@ -5,7 +5,11 @@ let lastMsgId = 0;
 // ====================== LOGOWANIE ======================
 async function doLogin() {
     const name = document.getElementById("overlayLoginName").value.trim();
+<<<<<<< HEAD
     const pass = document.getElementById("overlayLoginPass").value;
+=======
+    const pass = document.getElementByRes = document.getElementById("overlayLoginPass").value;
+>>>>>>> 2d453ad9231ff0a33ac7c66c8a2d06702ed119eb
 
     if (!name || !pass) {
         alert("Wpisz nazwę i hasło!");
@@ -99,6 +103,7 @@ async function loadNotes(userId) {
     document.getElementById("notes").value = data.content || "";
 }
 async function saveNotes() {
+<<<<<<< HEAD
         if (!currentUser) return;
     
         const content = document.getElementById("notes").value;
@@ -112,6 +117,16 @@ async function saveNotes() {
         // <<< TO JEST KLUCZOWA LINIJKA – DODAJ TĘ >>>
         loadNotes(currentUser.id);  // odświeża pole notatek po zapisie
     }
+=======
+    if (!currentUser) return;
+    const content = document.getElementById("notes").value;
+    await fetch("../Backend/notes.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id: currentUser.id, content })
+    });
+}
+>>>>>>> 2d453ad9231ff0a33ac7c66c8a2d06702ed119eb
 
 async function loadBoard() {
     const res = await fetch("../Backend/board.php");
@@ -136,6 +151,7 @@ async function pollMessages() {
     try {
         const res = await fetch(`../Backend/message.php?last_id=${lastMsgId}`);
         const messages = await res.json();
+<<<<<<< HEAD
         if (messages.length === 0) {
             setTimeout(pollMessages, 300);
             return;
@@ -160,10 +176,20 @@ async function pollMessages() {
                 line-height: 1.4;
                 box-shadow: 0 1px 2px rgba(0,0,0,0.1);
             `;
+=======
+
+        const box = document.getElementById("chatBox");
+
+        messages.forEach(m => {
+            const div = document.createElement("div");
+            div.textContent = `${m.name}: ${m.text}`;
+            div.style.marginBottom = "6px";
+>>>>>>> 2d453ad9231ff0a33ac7c66c8a2d06702ed119eb
             box.appendChild(div);
             lastMsgId = m.id;
         });
 
+<<<<<<< HEAD
         // TYLKO jeśli byliśmy blisko dołu – przewijamy na sam dół
         if (bylNaDole) {
             box.scrollTop = box.scrollHeight;
@@ -174,6 +200,19 @@ async function pollMessages() {
     }
 
     setTimeout(pollMessages, 300); // co 0,5 s – możesz dać nawet 300
+=======
+        // <<< KLUCZOWE: usuwamy najstarsze jeśli jest więcej niż 20 >>>
+        while (box.children.length > MAX_MESSAGES) {
+            box.removeChild(box.children[0]); // usuwa najstarszą (pierwszą)
+        }
+
+        box.scrollTop = box.scrollHeight;
+    } catch (err) {
+        console.error(err);
+    }
+
+    setTimeout(pollMessages, 2000);
+>>>>>>> 2d453ad9231ff0a33ac7c66c8a2d06702ed119eb
 }
 
 // Po wysłaniu wiadomości też czyścimy stare (na wszelki wypadek)
