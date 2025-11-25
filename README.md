@@ -6,10 +6,9 @@
 
 ### Co się dzieje w aplikacji?
 
-- tablica, do której ma dostęp **tylko** nauczyciel, a którą uczeń może zapisać,
+- tablica, do której ma dostęp **tylko** nauczyciel, 
 - notatkę ucznia można zapisać,
-- wiadomości na czacie grupowym może pisać **każdy**, jednak znikają one po 24h
-- po zalogowaniu masz możliwość zobaczenia, jakie osoby są obecnie zalogowane w klasie oraz jaką mają rolę (czy są nauczycielem, czy uczniem)
+- wiadomości na czacie grupowym może pisać **każdy**, jednak znikają one po jakimś czasie,
 
 
 ---
@@ -69,11 +68,12 @@
 ### Na dzień 25.11.2025
 
 - odrazu po wejściu się uczeń/nauczyciel musi się zalogować, bo inaczej nie może używać chatonotatnika.
-- Po zalogowaniu wyświetla się imie osoby zalogowanej oraz ranga jaką ma (uczeń/nauczyciel). Można też zauważyć wiadomości na czacie które są już jakiś czas.
-- Aplikacja radzi sobie bardzo dobrze gdy nie jest zminimalizowana.
+- Po zalogowaniu wyświetla się imie osoby zalogowanej oraz ranga jaką ma (uczeń/nauczyciel). Można też zauważyć wiadomości na czacie które są już jakiś czas,
+- Aplikacja radzi sobie bardzo dobrze gdy nie jest zminimalizowana,
 - Jako uczeń nie ma się dostępu do tablicy.
-- Notatki zrobione na lekcji się zapisują.
-- tablica 
+- Notatki zrobione na lekcji się zapisują i mozna je edytować,
+- tablica moze byc zapisywana tylko przez nauczyciela,
+- wiadomoci na czacie się skrolują.
 
 ---
 
