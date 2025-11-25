@@ -39,7 +39,9 @@
 
 ~ hasło użytkownika jest szyfrowane,
 
-~ nauczyciel i uczeń mają inne udogodnienia.
+~ nauczyciel i uczeń mają inne udogodnienia,
+
+~ notatki są prywatnie przechowywane.
 
 
 ---
