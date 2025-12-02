@@ -68,13 +68,17 @@
 ### Na dzień 25.11.2025
 
 - odrazu po wejściu się uczeń/nauczyciel musi się zalogować, bo inaczej nie może używać chatonotatnika.
-- Po zalogowaniu wyświetla się imie osoby zalogowanej oraz ranga jaką ma (uczeń/nauczyciel). Można też zauważyć wiadomości na czacie które są już jakiś czas,
+- Po zalogowaniu wyświetla się imie osoby zalogowanej oraz ranga jaką ma (uczeń/nauczyciel). Można też zauważyć wiadomości na czacie które są już jakis czas
 - Aplikacja radzi sobie bardzo dobrze gdy nie jest zminimalizowana,
 - Jako uczeń nie ma się dostępu do tablicy.
 - Notatki zrobione na lekcji się zapisują i mozna je edytować,
 - tablica moze byc zapisywana tylko przez nauczyciela,
 - wiadomoci na czacie się skrolują.
 
+### Na dzień 26.11.2025 
+
+- wiadomości na czacie są przez godzinę i pozniej znikają,
+ 
 ---
 
 ## 👥 Autorzy
